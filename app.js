@@ -12,7 +12,8 @@ const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: "https://dong-chatbox-client2.herokuapp.com/",
     methods: ["GET", "POST"]
   }
 });
