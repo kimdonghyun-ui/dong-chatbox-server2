@@ -45,7 +45,7 @@ io.on('connection', (socket)=> {
 
     socket.on('joinRoom', function(msg) {     // joinRoom을 클라이언트가 emit 했을 시
         let roomName = msg;
-        console.log(roomName)
+        console.log('joinRoom',roomName)
         socket.join(roomName);    // 클라이언트를 msg에 적힌 room으로 참여 시킴
     });
 
@@ -59,11 +59,11 @@ io.on('connection', (socket)=> {
 
 
 
-    socket.on('chatting', function(msg) {       // 클라이언트가 채팅 내용을 보냈을 시
-      console.log(msg)
+    socket.on('chatting', function(focusroom,new_msgs) {       // 클라이언트가 채팅 내용을 보냈을 시
+      console.log(focusroom,new_msgs)
         
       // 전달한 roomName에 존재하는 소켓 전부에게 broadcast라는 이벤트 emit
-        io.to(msg.roomName).emit('broadcast', msg); 
+        io.to(focusroom).emit('broadcast', new_msgs); 
     })
 })
 
